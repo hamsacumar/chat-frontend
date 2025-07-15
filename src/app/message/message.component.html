@@ -1,0 +1,16 @@
+<h2>Messages</h2>
+
+<div *ngFor="let msg of messages" class="message">
+  <strong>{{ msg.sender }}</strong> to <strong>{{ msg.receiver }}</strong>:
+  <span>{{ msg.content }}</span>
+</div>
+
+<hr>
+
+<h3>Send a Message</h3>
+<form (ngSubmit)="sendMessage()">
+  <input type="text" placeholder="Sender" [(ngModel)]="newMessage.sender" name="sender" required>
+  <input type="text" placeholder="Receiver" [(ngModel)]="newMessage.receiver" name="receiver" required>
+  <textarea placeholder="Message" [(ngModel)]="newMessage.content" name="content" required></textarea>
+  <button type="submit">Send</button>
+</form>
