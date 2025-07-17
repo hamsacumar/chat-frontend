@@ -1,6 +1,6 @@
-export interface Message{
-    id?: string;
-    sender: string;
-    receiver: string;
-    content: string;
+export interface Message {
+  id?: string;
+  senderId: string;
+  receiverId: string;
+  content: string;
 }
