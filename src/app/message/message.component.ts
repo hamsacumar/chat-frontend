@@ -16,10 +16,11 @@ import { provideHttpClient } from '@angular/common/http';
 export class MessageComponent implements OnInit{
   messages: Message[] =[];
   newMessage: Message ={
-    sender: '',
-    receiver:'',
+    senderId: '',
+    receiverId:'',
     content:''
   };
+
 
   constructor(private messageService: MessageService){}
 
@@ -29,6 +30,7 @@ export class MessageComponent implements OnInit{
 
   loadMessages(){
     this.messageService.getMessage().subscribe( data =>{
+      console.log('Fetched messages:', data);
       this.messages = data;
     });
   }
@@ -36,8 +38,13 @@ export class MessageComponent implements OnInit{
    sendMessage() {
     this.messageService.sendMessage(this.newMessage).subscribe(sent => {
       this.messages.push(sent);
-      this.newMessage = { sender: '', receiver: '', content: '' };
+      this.newMessage = { senderId: '', receiverId: '', content: '' };
     });
   }
+
+  selectReceiver(receiverId: string) {
+  this.newMessage.receiverId = receiverId;
+}
+
 
 }
